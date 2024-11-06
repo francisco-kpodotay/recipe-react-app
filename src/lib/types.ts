@@ -19,9 +19,9 @@ export interface GroupDataType {
 }
 
 export interface GroupMetodesType {
-  doClose: () => void;
-  onViewAll: () => void;
-  onClick: () => void;
+  doHideAndShow: (name: GroupDataType['name']) => void;
+  closeAllGroupExpectOne: (name: GroupDataType['name']) => void;
+ /*  onClick: () => void; */
 }
 
 export type idTableType = Array<[string, number[]]>;

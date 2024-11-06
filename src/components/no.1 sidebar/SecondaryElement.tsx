@@ -1,42 +1,54 @@
 import { defaultNumberOfElementsInGroup } from "../../lib/constants";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
-import { useState } from "react";
-import { GroupDataType } from "../../lib/types";
+import { GroupDataType, GroupMetodesType } from "../../lib/types";
 
-const SecondaryGroups: React.FC<GroupDataType> = ({ name, state, idTable }) => {
+const SecondaryGroups: React.FC<GroupDataType & GroupMetodesType> = ({
+  name,
+  state,
+  idTable,
+  doHideAndShow,
+  closeAllGroupExpectOne,
+}) => {
   const defaultShownNumber = defaultNumberOfElementsInGroup;
-  const [shownNumber, setShownNumber] = useState(defaultShownNumber);
 
-  function handelViewAll() {}
+  const renderElements = () => {
+    return idTable.map((element, index) => {
+      const showElement =
+        state === "open" ||
+        (state === "half-open" && index < defaultShownNumber);
+      if (showElement) {
+        return (
+          <span key={element[0]} onClick={()=>{console.log(element);
+          }}>
+            <p>{element[0]}</p>
+            <p>{element[1].length}</p>
+          </span>
+        );
+      }
+      return null;
+    });
+  };
 
   return (
     <div>
-      <span>
+      <span onClick={() => doHideAndShow(name)}>
         <p>{name}</p>
-        {state === "close" ? (
-          <FaAngleUp onClick={() => {}} />
-        ) : (
-          <FaAngleDown onClick={() => {}} />
-        )}
+        {state === "close" ? <FaAngleUp /> : <FaAngleDown />}
       </span>
+
       {state !== "close" && (
         <div>
-          {idTable.map((element, index) => {
-            return (
-              index < shownNumber && (
-                <span key={element[0]}>
-                  <p>{element[0]}</p>
-                  <p>{element[1].length}</p> 
-                </span>
-              )
-            );
-          })}
-
-          {state !== "open" && (
-            <p onClick={handelViewAll}>View All Categories</p>
+          {renderElements()}
+          {state === "half-open" && (
+            <p onClick={() => closeAllGroupExpectOne(name)}>
+              View All Categories
+            </p>
           )}
         </div>
       )}
+      
+      <br />
+      <br />
     </div>
   );
 };
