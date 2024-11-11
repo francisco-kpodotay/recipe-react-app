@@ -14,7 +14,7 @@ const MainElement: React.FC<MainNavigationProps> = ({
   quantity,
   onClick,
 }) => {
-  function iconSelector(iconType: MainNavigationProps['iconType']) {
+  function iconSelector(iconType: "all" | "favourite") {
     if (iconType === "all") {
       return <FaBook />;
     }

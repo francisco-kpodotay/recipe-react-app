@@ -4,6 +4,9 @@ import { useQuery } from "@tanstack/react-query";
 import { fechData, getFavouriteRecipeIds } from "../../lib/utils";
 import { miniDataUrl } from "../../lib/constants";
 import SecondaryGroups from "./SecondaryGroups";
+import RenderLogger from "../others/RenderLogger";
+import Error from "../others/Error";
+import Loading from "../others/Loading";
 
 const Folders: React.FC = () => {
   const { data, error, isLoading } = useQuery({
@@ -15,8 +18,8 @@ const Folders: React.FC = () => {
   const numberOfRecipes: number = data && data.total;
   const numberOfFavourites = getFavouriteRecipeIds.length;
 
-  if (isLoading) <h1>Lading...</h1>;
-  if (error) <h1>Ops... Something went wrong.</h1>;
+  if (isLoading) <Loading/>
+  if (error) <Error text={error.message}/>
 
   return (
     <div>
@@ -38,7 +41,8 @@ const Folders: React.FC = () => {
           onClick={() => {}}
         />
       </div>
-      {!isLoading && <SecondaryGroups data={data} />}
+      {data && <SecondaryGroups data={data} />}
+      <RenderLogger text={"Folders"}/>
     </div>
   );
 };

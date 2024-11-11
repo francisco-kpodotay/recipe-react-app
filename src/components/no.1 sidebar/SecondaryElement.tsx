@@ -1,8 +1,9 @@
 import { defaultNumberOfElementsInGroup } from "../../lib/constants";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { GroupDataType, GroupMetodesType } from "../../lib/types";
+import RenderLogger from "../others/RenderLogger";
 
-const SecondaryGroups: React.FC<GroupDataType & GroupMetodesType> = ({
+const SecondaryElement: React.FC<GroupDataType & GroupMetodesType> = ({
   name,
   state,
   idTable,
@@ -18,8 +19,12 @@ const SecondaryGroups: React.FC<GroupDataType & GroupMetodesType> = ({
         (state === "half-open" && index < defaultShownNumber);
       if (showElement) {
         return (
-          <span key={element[0]} onClick={()=>{console.log(element);
-          }}>
+          <span
+            key={element[0]}
+            onClick={() => {
+              console.log(element);
+            }}
+          >
             <p>{element[0]}</p>
             <p>{element[1].length}</p>
           </span>
@@ -46,11 +51,12 @@ const SecondaryGroups: React.FC<GroupDataType & GroupMetodesType> = ({
           )}
         </div>
       )}
-      
+      <RenderLogger text={"SecondaryElement"} />
+
       <br />
       <br />
     </div>
   );
 };
 
-export default SecondaryGroups;
+export default SecondaryElement;

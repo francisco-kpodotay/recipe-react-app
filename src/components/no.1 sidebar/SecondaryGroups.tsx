@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { getReorganisedGroupData } from "../../lib/utils";
 import { GroupDataType, MiniResponseDataType } from "../../lib/types";
 import SecondaryElement from "./SecondaryElement";
+import RenderLogger from "../others/RenderLogger";
 
 const SecondaryGroups: React.FC<{ data: MiniResponseDataType }> = ({
   data,
 }) => {
   const [groupData, setGroupData] = useState<GroupDataType[] | null>(null);
 
-  function doHideAndShow(name: GroupDataType["name"]) {
+  function doHideAndShow(name: string) {
     setGroupData((prev) => {
       if (prev === null) return null;
       return prev.map((element) => {
@@ -22,7 +23,7 @@ const SecondaryGroups: React.FC<{ data: MiniResponseDataType }> = ({
     });
   }
 
-  function closeAllGroupExpectOne(name: GroupDataType["name"]) {
+  function closeAllGroupExpectOne(name: string) {
     setGroupData((prev) => {
       if (prev === null) return null;
       return prev.map((element) => {
@@ -67,6 +68,7 @@ const SecondaryGroups: React.FC<{ data: MiniResponseDataType }> = ({
             />
           );
         })}
+      <RenderLogger text={"SecondaryGroups"} />
     </div>
   );
 };
