@@ -1,6 +1,7 @@
 import React from "react";
 import { FaBook, FaStar } from "react-icons/fa6";
 
+
 interface MainNavigationProps {
   iconType: "all" | "favourite";
   text: string;
