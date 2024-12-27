@@ -28,15 +28,15 @@ export function getReorganisedGroupData(
   let map = new Map<string, number[]>();
 
   if (type === "cuisines") {
-    data.recipes.forEach((miniRecipe: generalRecipeType)=>{
-      if (map.has(miniRecipe.cuisine      )) {
+    data.recipes.forEach((miniRecipe: generalRecipeType) => {
+      if (map.has(miniRecipe.cuisine)) {
         map.get(miniRecipe.cuisine)!.push(miniRecipe.id); // Use non-null assertion since we checked with has
       } else {
         map.set(miniRecipe.cuisine, [miniRecipe.id]);
       }
-    })
-  }else{
-     map = countFoodTypes(data, type);
+    });
+  } else {
+    map = countFoodTypes(data, type);
   }
 
   categories.push(...sortMapEntriesByArrayLength(map));

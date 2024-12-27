@@ -51,7 +51,7 @@ const SecondaryElement: React.FC<GroupDataType & GroupMetodesType> = ({
           )}
         </div>
       )}
-      <RenderLogger text={"SecondaryElement"} />
+     
 
       <br />
       <br />

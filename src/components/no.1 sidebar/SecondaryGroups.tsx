@@ -53,10 +53,11 @@ const SecondaryGroups: React.FC<{ data: MiniResponseDataType }> = ({
       },
     ];
     setGroupData(groupData);
+    
   }, []);
 
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
+    <div>
       {groupData &&
         groupData.map((groupData) => {
           return (
@@ -68,7 +69,7 @@ const SecondaryGroups: React.FC<{ data: MiniResponseDataType }> = ({
             />
           );
         })}
-      <RenderLogger text={"SecondaryGroups"} />
+     
     </div>
   );
 };

@@ -25,3 +25,5 @@ export interface GroupMetodesType {
 }
 
 export type idTableType = Array<[string, number[]]>;
+
+export type IconType = "FoldersMainElement" | "StarIcon";
