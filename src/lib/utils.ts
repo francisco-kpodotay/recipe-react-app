@@ -4,7 +4,7 @@ import {
 } from "../components/no.1 sidebar/Folders";
 import { GroupDataType } from "./types";
 
-export const fechData = async (url: string) => {
+export const fetchData = async (url: string) => {
   const response = await fetch(url);
   return response.json();
 };
@@ -21,7 +21,6 @@ export function getReorganisedGroupData(
   const categories: Array<[string, number[]]> = [];
 
   if (!data || !data.recipes) {
-    console.log("Data not loaded yet or no recipes found.");
     return categories;
   }
 

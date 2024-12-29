@@ -5,3 +5,5 @@ export const mealListUrl =
   "https://dummyjson.com/recipes?limit=0&select=id,name,servings,image";
 
 export const defaultNumberOfElementsInGroup = 4;
+
+
