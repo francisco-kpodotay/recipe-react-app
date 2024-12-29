@@ -1,11 +1,14 @@
-import MainElement from "./MainElement";
-import { useQuery } from "@tanstack/react-query";
-import { fechData, getFavouriteRecipeIds } from "../../lib/utils";
-import { miniDataUrl } from "../../lib/constants";
-import SecondaryGroups from "./SecondaryGroups";
 import Error from "../others/Error";
+import { Box, List } from "@mui/material";
 import Loading from "../others/Loading";
-import { useState } from "react";
+import FoldersHeader from "./FoldersHeader";
+import { fechData } from "../../lib/utils";
+import StarIcon from "@mui/icons-material/Star";
+import { useQuery } from "@tanstack/react-query";
+import { miniDataUrl } from "../../lib/constants";
+import FoldersMainElement from "./FoldersMainElement";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import FoldersSecondaryElementWrapper from "./FoldersSecondaryElementWrapper";
 
 const Folders: React.FC = () => {
   const { data, error, isLoading } = useQuery({
@@ -13,57 +16,24 @@ const Folders: React.FC = () => {
     queryFn: () => fechData(miniDataUrl),
   });
 
-  const numberOfRecipes: number = data && data.total;
-  const numberOfFavourites = getFavouriteRecipeIds.length;
-
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
-
   if (isLoading) <Loading />;
   if (error) <Error text={error.message} />;
 
-  function doHideAndShow() {
-    const foldersContainer = document.getElementById("folders-container")!;
-    const recipeDetailContainer = document.getElementById("recipe-detail-container")!;
-
-    if (isSidebarVisible) {
-      foldersContainer.style.width = "0";
-      recipeDetailContainer.style.width = "79vw";
-      setIsSidebarVisible(false);
-    } else {
-      recipeDetailContainer.style.width = "58vw";
-      foldersContainer.style.width = "21vw";
-      setIsSidebarVisible(true);
-    }
-  }
-
   return (
-    <div id="folders-container">
-      <div>
-        <button id="hide-sidebar-btn" onClick={doHideAndShow}>
-          Hide
-        </button>
-        <p>Folders</p>
-      </div>
-
-      <div>
-        <MainElement
-          text="All Recipes"
-          iconType="all"
-          quantity={numberOfRecipes}
-          onClick={() => {}}
-        />
-        <MainElement
-          text="Favourites"
-          iconType="favourite"
-          quantity={numberOfFavourites}
-          onClick={() => {}}
-        />
-      </div>
-
-      {data && <SecondaryGroups data={data} />}
-    </div>
+    <>
+      <Box id="folders-container">
+        <List subheader={<FoldersHeader />}>
+          <FoldersMainElement text={"All Recipes"} quantity={data?.limit}>
+            <MenuBookIcon />
+          </FoldersMainElement>
+          <FoldersMainElement text={"Favourites"} quantity={"0"}>
+            <StarIcon />
+          </FoldersMainElement>
+          <FoldersSecondaryElementWrapper data={data} />
+        </List>
+      </Box>
+    </>
   );
 };
 
 export default Folders;
-

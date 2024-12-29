@@ -4,7 +4,7 @@ const theme = createTheme({
   palette: {
     mode: 'dark', // Optional, for dark mode
     primary: {
-      main: '#f5f5f5', 
+      main: '#f5f5f5',
     },
   },
   components: {
@@ -25,7 +25,7 @@ const theme = createTheme({
           height: '100vh',
           overflowY: 'auto',
           width: '21vw',
-          transition: '0.5s', 
+          transition: '0.5s',
         },
         '#cookbook-container': {
           width: '21vw',
@@ -47,6 +47,17 @@ const theme = createTheme({
         },
         button: {
           transition: 'border-color 0.25s',
+        },
+        '::-webkit-scrollbar': {
+          width: '8px',
+          height: '8px',
+        },
+        '::-webkit-scrollbar-thumb': {
+          borderRadius: '20px',
+          background: '#888',
+        },
+        '::-webkit-scrollbar-track': {
+          background: '#333',
         },
       },
     },

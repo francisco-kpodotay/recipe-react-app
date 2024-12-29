@@ -1,7 +1,6 @@
-import Folders from "./components/no.1 sidebar/Folders";
 import RecipeDetail from "./components/recipe details/RecipeDetail";
 import Cookbook from "./components/no.2 sidebar/Cookbook";
-import MuiFolders from "./components/no.1 sidebar/mui/MuiFolders";
+import Folders from "./components/no.1 sidebar/Folders";
 
 function App() {
   return (
@@ -13,7 +12,7 @@ function App() {
       cuisine = ["cuisine"]
       tags = ["tags"] */}
       {/* <Folders /> */}
-      <MuiFolders/>
+      <Folders/>
 
       {/* side bar no.2
       user can't hide this, contains a header, a search bar, a list of recipies */}
